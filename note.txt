@@ -1,0 +1,173 @@
+=> Laravel 13 RESTful API (21 Sep 2026) 
+
+    # Version Need
+        Backend: PHP 8.3+, Mysql 8+, Composer 2+             (Recommended: PHP 8.5, Mysql 8)
+        Authentication: Laravel Passport / OAuth 2.0
+        Supporting tools: Postman (app/ vs package) or Bruno (app/ vs package)
+
+    # Requirements Check
+        php -v              (PHP 8.4.25)
+        mysql --Version     (8.4.11)
+        composer -V         (2.9.3)
+        git --version       
+
+---------------------------------------------------------------
+  => Laravel 13 Installation (laravel version 13.10.1, 13.32.0)
+        # (i) Laravel Installer 
+                composer global require laravel/installer
+
+                = Create an application with laravel installer
+                    laravel new lesson1
+                        # Question
+                            starter kit = No
+                            frontend build = React
+
+                        cd lession1
+                        npm install && npm run build
+                        
+
+        # (ii) Direct Composer
+                composer create-project laravel/laravel lesson1
+                or
+                composer create-project --prefer-dist laravel/laravel lession1 13.*
+                    --prefer-dist (download with compressed vrsion - so download fast)
+
+                # check version 
+                    php artisan about
+                    or
+                    php artisan --versions
+
+
+                #run
+                php artisan serve
+                or
+                composer run dev
+---------------------------------------------
+=> Create Database
+Mysql shell = sudo mysql -u root -p
+
+CREATE DATABASE laravel13apil1
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_cli;
+
+----------------------------------------------------------------
+=> Config 
+
+    #.env
+        APP_NAME="Laravell13 RESTful API"
+        APP_DEBUG=true
+        APP_URL=http://localhost:8000
+
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=laravel13apil1
+        DB_USERNAME=root
+        DB_PASSWORD=blackpink@2016
+
+
+    #config/app.php
+        'timezone' => 'Asia/Yangon',
+
+----------------------------------------------------------------
+php artisan config:clear
+php artisan config:cache
+php artisan route:clear
+php artisan route:cache
+php artisan event:cache
+php artisan view:cache
+
+php artisan optimize:clear
+----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Update PHP 8.3 in xampp
+
+1.Apache Service ကို ရပ်တန့်ပါ:လုပ်ဆောင်ချက်မစတင်မီ Service များကို Stop ထားရပါမည်.XAMPP Control Panel ကိုဖွင့်ပြီး Apache Service ကို Stop ပြုလုပ်ထားပါ။2.PHP 8.3 Zip file ဒေါင်းလုဒ်ဆွဲပါ:windows.php.net/download သို့သွားပြီး PHP 8.3 ၏ VS16 Thread Safe (x64) Zip file ကို ဒေါင်းလုဒ်ဆွဲပါ။ (Note: Apache နဲ့ သုံးရမှာဖြစ်လို့ Thread Safe အမျိုးအစား ဖြစ်ရပါမယ်)3.လက်ရှိ php Folder ကို နာမည်ပြောင်းပါ:C:\xampp\ directory ထဲသို့သွားပြီး လက်ရှိရှိနေသော php folder ကို php_old ဟု နာမည်ပြောင်းထားပါ။4.PHP 8.3 File များကို Extract လုပ်ပါ:ဒေါင်းလုဒ်ဆွဲထားသော Zip file ကိုဖြည်ပြီး ရလာသည့် folder ကို C:\xampp\ အောက်တွင် php ဟု နာမည်ပေး၍ ထည့်ပါ။5.Apache Config (httpd-xampp.conf) ကို ပြင်ဆင်ပါ:C:\xampp\apache\conf\extra\httpd-xampp.conf file ကို Text Editor တစ်ခုခု (Notepad, VS Code) ဖြင့် ဖွင့်ပါ။အောက်ပါအတိုင်း php8module သို့မဟုတ် php_module ကို PHP 8.3 DLL file လမ်းကြောင်းဖြင့် စစ်ဆေးပြင်ဆင်ပါ:ApacheLoadFile "C:/xampp/php/php8ts.dll"
+LoadFile "C:/xampp/php/libssh2.dll"
+LoadModule php_module "C:/xampp/php/php8apache2_4.dll"
+(Filename များသည် PHP 8.3 folder ထဲရှိ DLL file နာမည်များနှင့် ကိုက်ညီမှုရှိရပါမည်)6.php.ini File ကို ဖန်တီးပါ:C:\xampp\php\ folder ထဲရှိ php.ini-development file ကို ကူးယူပြီး php.ini ဟု နာမည်ပြောင်းပါ။php.ini ကိုဖွင့်ပြီး လိုအပ်သော Extension များ (ဥပမာ- extension=mysqli, extension=pdo_mysql, extension=curl) ရှေ့မှ ; ကို ဖြုတ်ပေးပါ။7.Apache ကို ပြန်လည်စတင်ပါ:XAMPP Control Panel ထဲမှ Apache ကို Start ပြန်လုပ်ပါ။ browser တွင် http://localhost/dashboard/phpinfo.php သို့သွား၍ PHP Version 8.3 သို့ ပြောင်းလဲသွားခြင်း ရှိမရှိ စစ်ဆေးပါ။
+
+extension_dir လမ်းကြောင်းကို ပြင်ပါ
+php.ini ဖိုင်ထဲမှာ Ctrl + F နှိပ်ပြီး extension_dir ဆိုပြီး ရှာပါ။
+
+အောက်ပါအတိုင်း တွေ့ရပါက ရှေ့က ; (semicolon) ပါနေရင် ဖြုတ်ပေးပြီး လမ်းကြောင်းကို XAMPP လမ်းကြောင်းအတိုင်း အတိအကျ ပြောင်းပေးပါ:
+
+Ini, TOML
+; မှားယွင်းနေနိုင်သော/ရှေ့တွင် semicolon ခံနေသော စာကြောင်း
+;extension_dir = "ext"
+အောက်ပါအတိုင်း ပြင်ပေးပါ:
+
+Ini, TOML
+extension_dir = "C:\xampp\php\ext"
+အဆင့် (၃) - လိုအပ်သော Extension များကို ဖွင့်ပါ (Enable)
+php.ini ဖိုင်ထဲမှာပဲ အောက်ပါ extension နာမည်များကို ရှာပြီး ရှေ့က ; (semicolon) များကို ဖျက်ပေးပါ:
+
+Ini, TOML
+extension=curl
+extension=fileinfo
+extension=gd
+extension=mbstring
+extension=mysqli
+extension=openssl
+extension=pdo_mysql
+(အထူးသဖြင့် extension=openssl နားက ; ကို မဖြစ်မနေ ဖြုတ်ပေးရပါမည်။ သို့မှသာ Composer က အလုပ်လုပ်မည်ဖြစ်ပါသည်။)
+
+
+
+
+using password: NO
+
+ဖြစ်နေတာပါ။
+
+Login box ပေါ်အောင်လုပ်ပါ
+
+ဒီ file ကိုဖွင့်ပါ။
+
+C:\xampp\phpMyAdmin\config.inc.php
+
+ဒီလိုရှိတာရှာပါ:
+
+$cfg['Servers'][$i]['auth_type'] = 'config';
+
+ကို
+
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+
+လို့ပြောင်းပါ။
+
+ဥပမာ:
+
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = '';
+
+user နဲ့ password ကို ဖျက်စရာမလိုပါဘူး။ auth_type ကိုပဲ cookie ပြောင်းပါ။
+
+ပြီးရင်:
+
+XAMPP → Apache Stop
+Apache → Start
+http://localhost/phpmyadmin ပြန်ဖွင့်
+
+အဲဒီအခါ login box ပေါ်လာပြီး:
+
+Username: root
+Password: သင် MySQL မှာ သတ်မှတ်ထားတဲ့ password
+
+ထည့်နိုင်ပါပြီ။
+
+အရေးကြီးတာ: MySQL password ကို config.inc.php ထဲမှာ ထည့်ထားဖို့ မလိုပါဘူး။ cookie mode မှာ phpMyAdmin login box ကနေ password ထည့်ပေးရပါတယ်။
