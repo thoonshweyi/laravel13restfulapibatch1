@@ -17,13 +17,92 @@
                 composer global require laravel/installer
 
                 = Create an application with laravel installer
-                    laravel new lesson1
+                    laravel new lesson
                         # Question
-                            starter kit = No
-                            frontend build = React
+                            Do you want to use a starter kit? = No
 
-                        cd lession1
+                            Which frontend stack do you want to build on? React
+                            
+                            No Auth 
+                            php unit
+
+                        cd lesson
                         npm install && npm run build
+
+                        # check version about laravel, php, composer
+                        php artisan about 
+                        php artisan --version (Laravel Framework 13.33.0)
+
+                        # run app
+                            composer run dev
+
+                => laravel comman not found Error (laravel --version)
+                        =new Terminal
+                        = Reboot
+
+                        # Linux [bash]
+                            (i) check shell 
+                                echo "$SHELL"
+                                bash, zsh
+
+                            (ii) check composer binary bolder
+                                composer global config bin-dir --absolute
+                                    eg: /home/administrator/.config/composer/vendor/bin
+
+                            (iii) set default shell
+                                    nano ~/.bashrc              
+
+                                    export PATH="/home/administrator/.config/composer/vendor/bin:$PATH"
+
+                            (iv) restart bash
+                                source ~/.bashrc
+
+                                **** if your system used zsh! try this "nano ~/.zshrc" ****
+                                **** if your system used zsh! try this "source ~/.zshrc" ****
+
+                            (v) check laravel version  
+                                laravel --version
+
+                        = MacOS [zsh]
+                            (i) check shell 
+                                echo "$SHELL"
+
+                            (ii) check composer binary bolder
+                                composer global config bin-dir --absolute
+                                    eg: /Users/administrator/.composer/vendor/bin
+
+                            (iii) set default shell
+                                    nano ~/.zshrc              
+
+                                    export PATH="/Users/administrator/.composer/vendor/bin:$PATH"
+
+                            (iv) restart bash
+                                source ~/.zshrc
+
+                                **** if your system used bash! try this "nano ~/.bash_prifiles" ****
+                                **** if your system used bash! try this "source ~/.bash_prifiles" ****
+
+                            (v) check laravel version  
+                                laravel --version
+
+                        = Window
+                            (i) check composer binary bolder
+                                
+                                composer global config bin-dir --absolute
+                                    eg: C:\Users\administrator\AppData\Roaming\Composer\vendor\bin
+
+                            (ii) Windows User Path
+                                    Start Menu > Search > Edit environment variables for you account 
+                                    User variables > choose Path > click Edit > click New
+                                    Path: C:\Users\administrator\AppData\Roaming\Composer\vendor\bin
+                                    click OK
+
+                            (iii) cloe CMD or PowerShell
+                                    re-open CMD or PowerShell
+                                    *close alwo IDEs (vscode, phpstrome)
+
+                            (iv) check laravel version  
+                                laravel --version
                         
 
         # (ii) Direct Composer
@@ -32,16 +111,15 @@
                 composer create-project --prefer-dist laravel/laravel lession1 13.*
                     --prefer-dist (download with compressed vrsion - so download fast)
 
-                # check version 
-                    php artisan about
-                    or
-                    php artisan --versions
+                cd lesson1
+                npm install && npm run build
 
+                # check version about laravel, php, composer
+                    php artisan about 
+                    php artisan --version (Laravel Framework 13.33.0)
 
-                #run
-                php artisan serve
-                or
-                composer run dev
+                # run app
+                    composer run dev
 ---------------------------------------------
 => Create Database
 Mysql shell = sudo mysql -u root -p
@@ -79,6 +157,11 @@ php artisan view:cache
 
 php artisan optimize:clear
 ----------------------------------------------------------------
+
+php artisan migrate
+
+----------------------------------------------------------------
+
 
 
 

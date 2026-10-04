@@ -22,8 +22,33 @@ Code    Name                    When                        Eg
 => Status Codes
 1xx - Informational
 2xx - Success
-3xx - Redirect
+3xx - Redirection
 4xx - Client Error
 5xx - Server Error
+
+------------------------------------
+HTTP Method     Example URL                     Meaning                                 Common success code    
+GET             /api/v1/products                List resource                           200
+GET             /api/v1/products/10             Read once resource                      200
+POST            /api/v1/products                Create resource                         201
+PUT/PATCH       /api/v1/products/10             Replace/Update resource                 200
+DELETE          /api/v2/products/10             Delete resource                         204
+
+https://api.example.com/api/v1/products/10
+
+http/htps           = Protocol
+api.example.com     = Domain
+api                 = API Prefix
+v1                  = version
+products            = Resource Name (plural)
+10                  = Resource ID
+
+
+# Nested Resource
+GET     /api/v1/users/5/posts
+GET     /api/v1/users/5/posts/10
+
+GET     /api/v1/posts/10/comments
+GET     /api/v1/posts/10/comments/3
 
 ------------------------------------

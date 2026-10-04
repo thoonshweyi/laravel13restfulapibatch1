@@ -1,0 +1,79 @@
+=>Passport Install
+    (i) Install
+        https://laravel.com > Docs (menu) > Packages (left side bar) > Passport (left side bar)
+        https://laravel.com/framework/docs/passport
+        
+        php artisan install:api --passport
+
+            Note: this command will arrange
+                (1) 0Auth migration
+                (2) 0Auth tables
+                (3) Token signing keys
+
+                Check: you can check 
+                1. database > migrations
+                2. storage > (0auth-private.key and 0auth-public.kdy)
+
+                *error
+                php artisan boost:update --ansi
+
+                # while installing we may have some error like boost install. but we don't need to install boost (optional)
+                php artsian boost:install
+                php artisan boost:update
+
+                    boosts features (boots for laravel's performance optimization package)
+                    (i) AI Guideline
+                    (ii) Agent Skills
+                    (iii) Boost MCP (Modal Context Protocol) Server Configuration
+                
+            # check passport already install or not!
+            composer show laravel/passport
+
+            php artisan route:list --path=oauth
+
+    (ii) Migration
+        php artisan migrate:status
+
+    (iii) app/Models/User.php
+
+            use Laravel\Passport\Contracts\OAuthenticable;
+            use Laravel\Passport\HasApiToken;
+
+            class User extends Authenticatable implements OAuthenticable
+            {
+                use HasFactory, Notifiable, HasApiToken;
+            }
+
+    (iv) config/auth.php
+         'guards' => [
+            'web' => [
+                'driver' => 'session',
+                'provider' => 'users',
+            ],
+            'api' => [
+                'driver' => 'passport',
+                'provider' => 'users',
+            ],
+        ],
+
+    (V) routes/api.php
+        Route::prefix("v1")->group(function (Request $request) {
+            Route::get('/health',function(){
+
+            });
+        });
+
+    (vi) Run and Test
+        composer run dev
+
+        #check route
+        php artisan route:list --path=api 
+
+        #Browser
+            http://127.0.0:8000/api/v1/health
+
+        #Postman
+            http://127.0.0:8000/api/v1/health
+
+        #Bruno
+            http://127.0.0:8000/api/v1/health
