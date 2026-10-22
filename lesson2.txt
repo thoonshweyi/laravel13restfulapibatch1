@@ -31,6 +31,16 @@
 
             php artisan route:list --path=oauth
 
+
+            #Tinker
+            php artisan tinker
+
+                Schema::hasTable('oauth_clients');
+                Schema::hasTable('oauth_access_tokens');
+                Schema::hasTable('oauth_refresh_tokens');
+
+
+
     (ii) Migration
         php artisan migrate:status
 
@@ -57,7 +67,7 @@
         ],
 
     (V) routes/api.php
-        Route::prefix("v1")->group(function (Request $request) {
+        Route::prefix("v1")->group(function ():void {
             Route::get('/health',function(){
 
             });
@@ -70,10 +80,74 @@
         php artisan route:list --path=api 
 
         #Browser
-            http://127.0.0:8000/api/v1/health
+            http://127.0.1:8000/api/v1/health
 
         #Postman
-            http://127.0.0:8000/api/v1/health
+            http://127.0.1:8000/api/v1/health
+            Accept:application/json
 
         #Bruno
-            http://127.0.0:8000/api/v1/health
+            http://127.0.1:8000/api/v1/health
+
+        # cURL
+            curl --version
+
+            #linux
+                sudo apt update
+                sudo apt install curl
+
+            #mac
+                brew install curl
+
+            #windows (window10, windowserver2019)
+                buiiltin
+
+            curl --request GET \
+            --url http://127.0.1:8000/api/v1/health \
+            --header 'Accept: application/json'
+
+-------------------------------------------
+# Common Error (Passport Installation)
+    php artisan config:clear
+
+    Class Laravel\\Passport.... not found
+
+    #Composer Install
+        php artsian install:api --passport
+        composer dump-autoload
+
+    # Personal access client not found. if passport doesn't create client while installing.
+        php artisan passport:client --personal
+
+    # API respond HTML error
+        Request header must declare (Accept: application/json)
+
+    
+
+
+---------------------------------------------------------------------------------------
+
+
+=Tinker
+Laravel Tinker is a command-line tool that lets you run PHP code and interact directly with your Laravel application without creating a controller, route, or separate PHP file.
+
+=>Test File
+
+
+    // php artisan make:test Api/V1/HealthCheckTest
+    // php artisan test --filter=HealthCheckTest
+
+    HealthCheckTest.txt
+    class HealthCheckTest extends TestCase
+    {
+        /**
+        * A basic feature test example.
+        */
+        public function test_example(): void
+        {
+            $response = $this->get('/');
+
+            $response->assertStatus(200);
+        }
+    }
+

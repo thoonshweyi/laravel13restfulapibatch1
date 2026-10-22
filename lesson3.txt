@@ -1,0 +1,31 @@
+# Route Parameter
+    /api/v1/examples/25
+                    (id) = 25
+# Query String:
+    /api/v1/examples/25?include=summary
+
+
+Parameter = for define resource
+Query string = use for filter/search, sort, pagination, or other optional behavior
+
+---------------------------------------------
+
+app/
+    Http/
+        Controllers/
+                    Api/
+                        V1/
+                            ApiController.php
+                            HealthCheckController.php
+
+routes/
+    api.php
+
+test/
+    Feature/
+            Api/
+                V1/
+                    HealthCheckTest.php
+--------------------------------
+php artisan make:controller Api/V1/ApiController
+php artisan make:controller Api/V1/HealthCheckController --invokable
